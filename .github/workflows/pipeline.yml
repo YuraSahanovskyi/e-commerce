@@ -12,26 +12,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up Image Name
         id: prep
         run: |
           GHCR_IMAGE="ghcr.io/${{ github.repository_owner }}/ecommerce-app"
           echo "image=${GHCR_IMAGE,,}" >> $GITHUB_OUTPUT
-          
+
           SHORT_SHA=$(echo "${{ github.sha }}" | cut -c1-7)
           echo "tag_sha=sha-${SHORT_SHA}" >> $GITHUB_OUTPUT
 
       - name: Login to GHCR
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build image for scanning
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: .
           load: true
@@ -46,7 +46,7 @@ jobs:
           severity: 'CRITICAL,HIGH'
 
       - name: Build and push
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: .
           push: true
