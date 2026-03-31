@@ -24,10 +24,11 @@ func main() {
 
 	if err := godotenv.Load(); err != nil {
 		logger.Log.Info(".env not found, using system env")
+	} else {
+		logger.Log.Info(".env loaded")
 	}
 
 	db.InitDB()
-	db.RunMigrations()
 
 	r := gin.New()
 	r.Use(gin.Recovery())
