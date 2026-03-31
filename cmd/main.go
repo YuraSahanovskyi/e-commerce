@@ -29,7 +29,6 @@ func main() {
 	}
 
 	db.InitDB()
-	db.RunMigrations()
 
 	r := gin.New()
 	r.Use(gin.Recovery())
