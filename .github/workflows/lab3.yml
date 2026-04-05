@@ -1,11 +1,7 @@
 # .github/workflows/lab3.yml
 name: Lab 3 Kubernetes Deployment
 
-on:
-  push:
-    branches: [ "lab3" ]
-  pull_request:
-    branches: [ "lab3" ]
+on: [push]
 
 jobs:
   kind-deploy:
@@ -26,8 +22,6 @@ jobs:
 
     - name: Install kubectl
       uses: azure/setup-kubectl@v3
-      with:
-        version: '1.28.0'
 
     - name: Create KinD cluster
       run: |
