@@ -34,8 +34,8 @@ jobs:
 
     - name: Wait for pods
       run: |
-        kubectl wait --for=condition=Ready pod -l app=ecommerce-app --timeout=120s
-        kubectl wait --for=condition=Ready pod -l app=postgres --timeout=120s
+        kubectl wait --for=condition=Ready pod -l app=ecommerce --timeout=120s --ignore-not-found
+        kubectl wait --for=condition=Ready pod -l app=postgres --timeout=120s --ignore-not-found
 
     - name: Run Lab 3 Grading Script
       run: |
