@@ -1,0 +1,20 @@
+replicaCount: 2
+
+image:
+  repository: ghcr.io/yurasahanovskyi/ecommerce-app
+  tag: latest
+
+service:
+  port: 8080
+
+resources:
+  requests:
+    memory: "256Mi"
+    cpu: "250m"
+  limits:
+    memory: "1Gi"
+    cpu: "1"
+
+env:
+  PORT: "8080"
+  GIN_MODE: "release"
